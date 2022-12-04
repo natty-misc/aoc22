@@ -11,12 +11,12 @@ data Range a = Range {
     max :: a
 } deriving (Show) 
 
-data ParseError = MaxGreaterThanMin | RangeSyntaxError | SplitError deriving (Show)
+data ParseError = MaxNotGreaterThanMin | RangeSyntaxError | SplitError deriving (Show)
 
 mkRange :: forall a. Ord a => a -> a -> Either (Range a) ParseError
 mkRange a b
     | a <= b = Left (Range a b)
-    | otherwise = Right MaxGreaterThanMin
+    | otherwise = Right MaxNotGreaterThanMin
 
 parseRangeParts :: forall a. (Ord a, Read a) => String -> String -> Either (Range a) ParseError
 parseRangeParts left right = case (readMaybe left, readMaybe right) of
