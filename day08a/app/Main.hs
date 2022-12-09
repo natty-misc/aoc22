@@ -7,5 +7,5 @@ countIncreases xs = fst $ foldl (\(acc_cnt, acc_val) (i_cnt, i_val) -> if i_val 
 
 main :: IO ()
 main = do
-    map <- ((read <$>) <$>) <$> (((:[]) <$>) <$>) <$> lines <$> getContents
+    map <- ((read . (:[]) <$>) <$>) <$> lines <$> getContents
     print $ sum $ sum <$> (fromEnum <$>) <$> (foldl1 (zipWith (zipWith (||))) (($ map) <$> [(countIncreases <$>), (reverse . countIncreases . reverse <$>), transpose . (countIncreases <$>) . transpose, transpose . (reverse . countIncreases . reverse <$>) . transpose]))

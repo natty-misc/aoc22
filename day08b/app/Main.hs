@@ -8,5 +8,5 @@ scenicScore [] = []
     
 main :: IO ()
 main = do
-    mp <- ((read <$>) <$>) <$> (((:[]) <$>) <$>) <$> lines <$> getContents
+    mp <- ((read . (:[]) <$>) <$>) <$> lines <$> getContents
     print $ maximum $ maximum <$> (foldl1 (zipWith (zipWith (*))) (($ mp) <$> [(scenicScore <$>), (reverse . scenicScore . reverse <$>), transpose . (scenicScore <$>) . transpose, transpose . (reverse . scenicScore . reverse <$>) . transpose]))
