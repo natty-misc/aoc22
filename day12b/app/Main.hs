@@ -11,9 +11,6 @@ import qualified Data.Graph.AStar as AS
 
 type XY = (Int, Int)
 
-heuristic :: XY -> XY -> Int
-heuristic (goalX, goalY) (posX, posY) = abs (goalX - posX) + abs (goalY - posY)
-
 parseRow :: XY -> [Char] -> (Maybe XY, Maybe XY, [Int])
 parseRow (xx, yy) ('S' : xs) = (\(_, e, v) -> (Just (xx, yy), e, [ord 'a' - ord 'a'] ++ v)) $ parseRow (xx + 1, yy) xs
 parseRow (xx, yy) ('E' : xs) = (\(s, _, v) -> (s, Just (xx, yy), [ord 'z' - ord 'a'] ++ v)) $ parseRow (xx + 1, yy) xs
@@ -43,8 +40,9 @@ mkEdges (enumerate -> vMap) = M.fromListWith (++) edges
 getNeighbors :: M.Map XY [XY] -> XY -> HS.HashSet XY
 getNeighbors edges pos = HS.fromList $ fromJust ((M.lookup pos edges) `orElse` Just [])
 
+-- Lazy solution: Turn A* into UCS (basically BFS since all costs are equal) by using 0 as a heuristic
 aStar :: [[Int]] -> M.Map XY [XY] -> XY -> XY -> Maybe [XY]
-aStar vmap edges start end = AS.aStar (getNeighbors edges) (const $ const 1) (const 0) (\(x, y) -> ((vmap !! y) !! x) == 0) end
+aStar vmap edges _ end = AS.aStar (getNeighbors edges) (const $ const (1 :: Int)) (const (0 :: Int)) (\(x, y) -> ((vmap !! y) !! x) == 0) end
 
 main :: IO ()
 main = do
