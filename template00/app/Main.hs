@@ -1,9 +1,4 @@
-{-# LANGUAGE RankNTypes #-}
-{-# LANGUAGE ViewPatterns #-}
-
-module Main where
+module Main (main) where
 
 main :: IO ()
-main = do
-    inputLines <- lines <$> getContents
-    print inputLines
+main = putStrLn "Hello world!"
