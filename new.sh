@@ -12,6 +12,11 @@ if [ "$1" == "--help" ]; then
     exit 1
 fi
 
+if [ -d "$1" ]; then
+    echo "Error! Directory '$1' already exists! Refusing to recreate."
+    exit 1
+fi
+
 mkdir -p "$1/app"
 cp "template00/app/Main.hs" "$1/app/Main.hs"
 cp "template00/.gitignore" "$1/.gitignore"
