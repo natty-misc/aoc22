@@ -69,7 +69,7 @@ parseMonkeyAll ls = (parseMonkey $ take 7 ls) : (parseMonkeyAll $ drop 7 ls)
 doThrow :: Int -> Int -> Integer -> [(Int, [Integer])] -> [(Int, [Integer])]
 doThrow from to item input = [ 
     if from == monkeyPos
-        then (throwCnt + 1, items)
+        then (throwCnt + 1, [])
     else if to == monkeyPos
         then (throwCnt, items ++ [item])
     else (throwCnt, items)
@@ -77,8 +77,7 @@ doThrow from to item input = [
 
 doThrowTurn :: Monkey -> Int -> [Integer] -> [(Int, [Integer])] -> [(Int, [Integer])]
 doThrowTurn (Monkey _ hasher succTgt failTgt) from items input = do
-    let new = foldl (\acc worr -> doThrow from (if applyHasher hasher worr == 0 then succTgt else failTgt) worr acc) input items 
-    take from new ++ [((fst $ new !! from), [])] ++ drop (from + 1) new
+    foldl (\acc worr -> doThrow from (if applyHasher hasher worr == 0 then succTgt else failTgt) worr acc) input items
 
 inspect :: Monkey -> [Integer] -> [Integer]
 inspect (Monkey op hasher _ _) items = [(eval item op) `div` 3 | item <- items]
