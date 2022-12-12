@@ -1,0 +1,8 @@
+resolver: ghc-9.4.2
+
+packages:
+- .
+
+extra-deps: [astar-0.3.0.0, hashable-1.4.1.0, psqueues-0.2.7.3, unordered-containers-0.2.19.1, containers-0.6.5.1, binary-0.8.9.1, text-2.0.1]
+
+# flags: {}
