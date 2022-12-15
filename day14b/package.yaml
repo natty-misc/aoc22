@@ -1,0 +1,39 @@
+name:                day14b
+version:             0.1.0.0
+github:              "natty-misc/aoc22"
+author:              "Natty"
+maintainer:          "natty.sh.git@gmail.com"
+copyright:           "2022 Natty"
+
+extra-source-files:
+- README.md
+- CHANGELOG.md
+
+description:         Please see the README on GitHub at <https://github.com/natty-misc/aoc22#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- containers ^>=0.6.0
+- text ^>=2.0.0
+- parsec ^>= 3.1.15.1
+- vector ^>= 0.12.3.1
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wmissing-export-lists
+- -Wmissing-home-modules
+- -Wpartial-fields
+- -Wredundant-constraints
+
+executables:
+  day14b:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
