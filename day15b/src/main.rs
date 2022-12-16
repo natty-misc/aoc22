@@ -94,11 +94,6 @@ fn main() {
         .copied()
         .map(|(s, b)| (s, manhattan(s, b)))
         .collect::<Vec<_>>();
-    let beacons = lines
-        .iter()
-        .copied()
-        .map(|(_, b)| b)
-        .collect::<HashSet<_>>();
 
     let mut edges = vec![
         Line {
