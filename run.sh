@@ -18,4 +18,13 @@ if ! [ -d "$1" ]; then
 fi
 
 cd "$1"
-stack run <input.txt
+
+case "$1" in
+    # Rust solutions
+    "day15a" | "day15b") 
+       cargo run <input.txt
+       ;;
+    # Default solutions -- Haskell
+    *) stack run <input.txt
+       ;;
+esac
