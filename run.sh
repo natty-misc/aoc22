@@ -21,7 +21,8 @@ cd "$1"
 
 case "$1" in
     # Rust solutions
-    "day15a" | "day15b") 
+    "day15a" | "day15b" | \
+    "day16a" | "day16b") 
        cargo run <input.txt
        ;;
     # Default solutions -- Haskell
