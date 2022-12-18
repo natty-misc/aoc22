@@ -23,7 +23,8 @@ case "$1" in
     # Rust solutions
     "day15a" | "day15b" | \
     "day16a" | "day16b" | \
-    "day17a" | "day17b" ) 
+    "day17a" | "day17b" | \
+    "day18a" | "day18b" ) 
        RUST_BACKTRACE=1 cargo run <input.txt
        ;;
     # Default solutions -- Haskell
