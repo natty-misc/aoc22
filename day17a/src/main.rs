@@ -1,6 +1,6 @@
-use std::{fmt::Display, time::Duration};
+use std::fmt::Display;
 
-use ndarray::{array, s, Array2, Axis};
+use ndarray::{array, s, Array2};
 
 #[repr(u8)]
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
