@@ -22,8 +22,9 @@ cd "$1"
 case "$1" in
     # Rust solutions
     "day15a" | "day15b" | \
-    "day16a" | "day16b") 
-       cargo run <input.txt
+    "day16a" | "day16b" | \
+    "day17a" | "day17b" ) 
+       RUST_BACKTRACE=1 cargo run <input.txt
        ;;
     # Default solutions -- Haskell
     *) stack run <input.txt
