@@ -1,0 +1,9 @@
+[package]
+name = "day19a"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+nom = "7"
+smallvec = "1.10.0"
+rayon = "1.6"

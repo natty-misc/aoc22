@@ -24,7 +24,14 @@ case "$1" in
     "day15a" | "day15b" | \
     "day16a" | "day16b" | \
     "day17a" | "day17b" | \
-    "day18a" | "day18b" ) 
+    "day18a" | "day18b" | \
+    "day19a" | "day19b" | \
+    "day20a" | "day20b" | \
+    "day21a" | "day21b" | \
+    "day22a" | "day22b" | \
+    "day23a" | "day23b" | \
+    "day24a" | "day24b" | \
+    "day25a" | "day25b" ) 
        RUST_BACKTRACE=1 cargo run <input.txt
        ;;
     # Default solutions -- Haskell
