@@ -130,21 +130,23 @@ fn should_prune(remaining: u32, blueprint: &Blueprint, curr: &Resources, max: u3
     // Check if enough geodes can be generated in the remaining time
     // This bound assumes a robot would be created every remaining iteration
     let bnd_ore_robot = remaining.saturating_sub(2);
-    let bnd_ore =
-        curr.ore + curr.ore_robots * (remaining - 1) + (bnd_ore_robot * (remaining - 1) + 1) / 2;
+    let bnd_ore = curr.ore
+        + curr.ore_robots * remaining.saturating_sub(1)
+        + (bnd_ore_robot * remaining.saturating_sub(1) + 1) / 2;
 
     let bnd_clay_robot = remaining
         .min(bnd_ore / blueprint.clay_cost)
         .min(remaining.saturating_sub(3));
-    let bnd_clay =
-        curr.clay + curr.clay_robots * (remaining - 2) + (bnd_clay_robot * (remaining - 2) + 1) / 2;
+    let bnd_clay = curr.clay
+        + curr.clay_robots * remaining.saturating_sub(2)
+        + (bnd_clay_robot * remaining.saturating_sub(2) + 1) / 2;
 
     let bnd_obs_robot = (bnd_clay / blueprint.obsidian_cost_clay)
         .min(bnd_ore / blueprint.obsidian_cost_ore)
         .min(remaining.saturating_sub(2));
     let bnd_obs = curr.obsidian
-        + curr.obsidian_robots * (remaining - 1)
-        + (bnd_obs_robot * (remaining - 1) + 1) / 2;
+        + curr.obsidian_robots * remaining.saturating_sub(1)
+        + (bnd_obs_robot * remaining.saturating_sub(1) + 1) / 2;
 
     let bnd_geode_robot = (bnd_obs / blueprint.geode_cost_obsidian)
         .min(bnd_ore / blueprint.geode_cost_ore)
