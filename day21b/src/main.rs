@@ -119,14 +119,13 @@ fn parse_line(input: &str) -> IResult<&str, (Symbol, Expression)> {
 
 fn extract_expr(
     symbol: &Symbol,
-    root_symbol: &Symbol,
     symbols: &HashMap<Symbol, Expression>,
     new_symbols: &mut HashMap<Symbol, Expression>,
 ) -> Expression {
     match &symbols[symbol] {
         expr @ Expression::Binary(a, op, b) => {
-            let left = &extract_expr(a, root_symbol, symbols, new_symbols);
-            let right = &extract_expr(b, root_symbol, symbols, new_symbols);
+            let left = &extract_expr(a, symbols, new_symbols);
+            let right = &extract_expr(b, symbols, new_symbols);
 
             match (left, right) {
                 (Expression::Unknown, Expression::Unknown) => {
@@ -218,7 +217,7 @@ fn main() {
 
     if let Expression::Binary(ref a, BinaryOperator::Eq, ref b) = sol {
         let mut new_sym = HashMap::new();
-        extract_expr(root, root, &symbols, &mut new_sym);
+        extract_expr(root, &symbols, &mut new_sym);
         let new_sym = new_sym;
 
         let sol = new_sym[humn_sym].eval(&new_sym);
